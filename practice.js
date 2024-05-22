@@ -28,7 +28,7 @@
   Return the result of invoking the callback.
 */
 
-// Code Here
+const first = (arr, callback) => callback(arr[0]);
 
 // Do not edit the code below.
 const names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
@@ -48,7 +48,7 @@ first(names, function (firstName) {
   Return the result of invoking the callback.
 */
 
-//Code Here
+const last = (arr, callback) => callback(arr[arr.length - 1]);
 
 // Do not edit the code below.
 // Your function is called here
@@ -65,7 +65,10 @@ last(names, (lastName) => {
   Invoke the callback, passing in the product of the two numbers multiplied as the argument.
 */
 
-//Code Here
+const multiply = (num1, num2, callback) => {
+  const result = num1 * num2;
+  return callback(result);
+}
 
 // Do not edit the code below.
 // Your function is called here
@@ -83,7 +86,15 @@ multiply(4, 3, function (answer) {
   If the name does not exist, invoke the callback with false as the argument.
 */
 
-//Code Here
+const contains = (arr, name, callback) => {
+  arr.forEach((obj) => {
+    if (obj === name) {
+      return callback(true);
+    } else {
+      return callback(false);
+    }
+  })
+}
 
 // Do not edit the code below.
 // Your function is called here
@@ -103,7 +114,10 @@ contains(names, 'Colt', (result) => {
   For each name in the array, invoke the callback and pass in the name and the name's index as arguments.
 */
 
-//Code Here
+const each = (arr, callback) => {
+  arr.forEach((name) => callback(name, arr.indexOf(name)))
+}
+
 
 // Do not edit the code below.
 // Your function is called here
@@ -120,7 +134,14 @@ each(names, (item, index) => {
   When the correct user object is found, invoke the callback with the user object as an argument.
 */
 
-// Code here
+const getUserById = (arr, id, callback) => {
+  arr.forEach((user) => {
+    if (user.id === id) {
+      callback(user);
+      return;
+    } 
+  })
+}
 
 // Do not edit the code below.
 const users = [
@@ -170,7 +191,7 @@ getUserById(users, '16t', (user) => {
 // Make sure to use an arrow function.
 // You should not use a for loop, but should use the filter method instead.
 
-// REPLACE THIS WITH YOUR CODE
+const evens = (arr) => arr.filter((num) => num % 2 === 0);
 
 /// /////// PROBLEM 8 //////////
 
@@ -182,7 +203,7 @@ getUserById(users, '16t', (user) => {
 //
 // Make sure to use an arrow function combined with the filter method (not a for loop).
 
-// REPLACE THIS WITH YOUR CODE
+const startWithLetterA = (arr) => arr.filter((string) => string[0] === 'A' || string[0] === 'a')
 
 /// /////// PROBLEM 9 //////////
 
@@ -192,7 +213,7 @@ getUserById(users, '16t', (user) => {
 //
 // Make sure to use arrow functions combined with the map method.
 
-// REPLACE THIS WITH YOUR CODE
+const formalGreeting = (arr) => arr.map((name) => `Hello, ${name}`);
 
 /// /////// PROBLEM 10 //////////
 
@@ -202,7 +223,10 @@ getUserById(users, '16t', (user) => {
 // Remember that by default, JavaScript sorts by converting all items to strings. So you
 // will need to provide a compare function.
 
-// REPLACE THIS WITH YOUR CODE
+const sortNumbers = (arr) => {
+  const compareFn = (a, b) => a - b;
+  return arr.sort(compareFn);
+}
 
 /// /////// PROBLEM 11 //////////
 
@@ -222,7 +246,7 @@ const employees = [
 ];
 // Do not edit the code above.
 
-// REPLACE THIS WITH YOUR CODE
+const findProgrammer = (employees) => employees.filter((employee) => employee.job === 'programmer')[0];
 
 ////////// PROBLEM 12 //////////
 
@@ -249,7 +273,11 @@ const orders = [
   Example: if tax is 0.07, the price afterTax could be calculated like this: afterTax = price * 1.07)
 */
 
-let orderTotals; // Code here
+const orderTotals = (orders) => {
+  const totals = orders.map((order) => order.price * (1 + order.tax));
+  return totals;
+};
+
 
 /// /////// PROBLEM 13 //////////
 
@@ -265,7 +293,12 @@ const exampleMenuItems = [
 // Create a function called sortMenuItems which takes in an array of objects like the one above
 // and sorts the array by price from smallest to largest. It should return the sorted array.
 
-// REPLACE THIS WITH YOUR CODE
+const sortMenuItems = (arr) => {
+  const comparePrices = (a, b) => {
+    return a.price - b.price;
+  };
+  return arr.sort(comparePrices);
+};
 
 /// /////// PROBLEM 14 //////////
 
@@ -275,4 +308,4 @@ const exampleMenuItems = [
 //
 // Make sure to use arrow functions combined with the reduce method.
 
-// REPLACE THIS WITH YOUR CODE
+const productOfArray = (arr) => arr.reduce((runningTotal, curValue) => runningTotal * curValue);
