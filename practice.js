@@ -273,10 +273,11 @@ const orders = [
   Example: if tax is 0.07, the price afterTax could be calculated like this: afterTax = price * 1.07)
 */
 
-const orderTotals = (orders) => {
+const totalsFn = (orders) => {
   const totals = orders.map((order) => order.price * (1 + order.tax));
   return totals;
 };
+let orderTotals = totalsFn(orders);
 
 
 /// /////// PROBLEM 13 //////////
